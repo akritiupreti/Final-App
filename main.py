@@ -130,6 +130,6 @@ class Watchdog(MDApp):
 
 
 if __name__ == "__main__":
-    LabelBase.register(name="MPoppins", fn_regular="E:/Work/Projects/Final-App/MPoppins.ttf")
-    LabelBase.register(name="BPoppins", fn_regular="E:/Work/Projects/Final-App/BPoppins.ttf")
+    LabelBase.register(name="MPoppins", fn_regular=os.getcwd()+"\MPoppins.ttf")
+    LabelBase.register(name="BPoppins", fn_regular=os.getcwd()+"\BPoppins.ttf")
     Watchdog().run()
