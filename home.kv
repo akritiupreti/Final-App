@@ -1,0 +1,66 @@
+MDScreen:
+    name: "default"
+    MDBottomNavigation:
+        id: navbar
+        MDBottomNavigationItem:
+            id: home
+            name: "home"
+            text: "Home"
+            icon: "home"
+            MDFloatLayout:
+                md_bg_color: 1, 1, 1, 1
+
+                Image:
+                    source: "assets/icon.jpg"
+                    pos_hint: {"center_x": .5, "center_y": 0.75}
+                    size_hint: .3, .3
+
+                MDLabel:
+                    font_size: 20
+                    text: 'Are you home?'
+                    font_name: "MPoppins"
+                    halign: 'center'
+                    size_hint_y: None
+                    pos_hint: {"center_x": .5, "center_y": .53}
+                    height: self.texture_size[1]
+                    padding_y: 15
+
+
+                Switch:
+                    id: switch
+                    active: True
+                    on_active: app.on_action() if switch.active else app.off_action()
+
+                    pos_hint: {"center_x": .5, "center_y": .45}
+
+                Button:
+                    text: "Refresh"
+                    size_hint: .66, .065
+                    pos_hint: {"center_x": .5, "center_y": .1}
+                    background_color: 0, 0, 0, 0
+                    font_name: "BPoppins"
+                    canvas.before:
+                        Color:
+                            rgb: rgba(52, 0, 231, 255)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [5]
+                    on_release:
+                        app.logger()
+
+        MDBottomNavigationItem:
+            name: "about"
+            text: "About us"
+            icon: "chat"
+            MDLabel:
+                text: "About us"
+                halign: "center"
+
+        MDBottomNavigationItem:
+            name: "instructions"
+            text: "Instructions"
+            icon: "coffee"
+            MDLabel:
+                text: "Instructions"
+                halign: "center"

@@ -14,11 +14,12 @@ MDScreen:
 
         MDLabel:
             id: welcome_label
-            text: " Sign in to continue    "
-            font_size: 40
+            text: "Sign In"
+            font_name: "BPoppins"
+            font_size: 35
             halign: 'center'
             size_hint_y: None
-            pos_hint: {"center_x": .6, "center_y": .85}
+            pos_hint: {"center_x": .5, "center_y": .85}
             height: self.texture_size[1]
             padding_y: 15
 
@@ -26,6 +27,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .63}
             TextInput:
+                id: user
                 hint_text: "Email"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -45,6 +47,7 @@ MDScreen:
             size_hint: .7, .07
             pos_hint: {"center_x": .5, "center_y": .5}
             TextInput:
+                id: pw
                 hint_text: "Password"
                 font_name: "MPoppins"
                 size_hint_y: .75
@@ -74,13 +77,12 @@ MDScreen:
                     size: self.size
                     pos: self.pos
                     radius: [5]
+            on_release:
+                app.logger()
+                root.manager.transition.direction = "left"
+                root.manager.current = "default"
 
-        MDTextButton:
-            text: "Forgot Password?"
-            pos_hint: {"center_x": .5, "center_y": .28}
-            color: rgba(68, 78, 132, 255)
-            font_size: "12sp"
-            font_name: "BPoppins"
+
         MDLabel:
             text: "or"
             color: rgba(52, 0, 231, 255)
@@ -108,23 +110,8 @@ MDScreen:
             size_hint: .48, .07
             pos_hint: {"center_x": .5, "center_y": .1}
             Image:
-                source: "google.png"
+                source: "assets/google.png"
             Image:
-                source: "facebook.png"
+                source: "assets/facebook.png"
             Image:
-                source: "apple.png"
-        MDLabel:
-            text: "Don't have an account?"
-            font_name: "BPoppins"
-            font_size: "11sp"
-            pos_hint: {"center_x": .68, "center_y": .04}
-            color: rgba(135, 133, 193, 255)
-        MDTextButton:
-            text: "Sign up"
-            font_name: "BPoppins"
-            font_size: "11sp"
-            pos_hint: {"center_x": .75, "center_y": .04}
-            color: rgba(135, 133, 193, 255)
-            on_release:
-                root.manager.transition.direction = "left"
-                root.manager.current = "signup"
+                source: "assets/apple.png"
