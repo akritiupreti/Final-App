@@ -8,6 +8,7 @@ import os
 from ftplib import FTP
 import plyer
 import time
+from functools import partial
 
 
 Window.size = (310, 580)
@@ -18,14 +19,21 @@ class Client:
         self.username = user
         self.password = pw
 
-    def run(self):
-        ftp = FTP()
+        self.ftpMain = FTP()
         server = "ftp.epizy.com"
         port = 21
-        ftp.connect(server, port)
-        ftp.login(self.username, self.password)
-        # ftp.login("epiz_33608356", "HwGN8xvq7ut")
 
+        print("Connecting to server...")
+        self.ftpMain.connect(server, port)
+        self.ftpMain.login(self.username, self.password)
+        print("Connected!")
+
+    def change_status(self, fromStatus, toStatus):
+        self.ftpMain.rename(fromStatus, toStatus)
+
+    def run(self):
+        ftp = self.ftpMain
+        # ftp.login("epiz_33608356", "HwGN8xvq7ut")
         files = ftp.nlst()  # list of files on the server
         # print(files)
 
@@ -49,8 +57,9 @@ class Client:
                     r = ftp.retrbinary('RETR %s' % file, open(path, 'wb').write)
                     print(r)
                 else:
-                    print("File already downloaded")
-        ftp.quit()
+                    pass
+                    #print("File already downloaded")
+        #ftp.quit()
         return new
 
 
@@ -74,8 +83,8 @@ class Watchdog(MDApp):
         print(username)
         print(password)
 
-        obj = Client(username, password)
-        new = obj.run()
+        self.obj = Client(username, password)
+        new = self.obj.run()
         if new:
             self.send_notification()
         else:
@@ -86,13 +95,12 @@ class Watchdog(MDApp):
     def keep_checking_for_intruders(self, *args):
         username = "epiz_33608356"
         password = "HwGN8xvq7ut"
-        obj = Client(username, password)
-        new = obj.run()
+        #obj = Client(username, password)
+        new = self.obj.run()
         if new:
             self.send_notification()
         else:
             print("No new intruders")
-
 
     def send_notification(self):
         plyer.notification.notify(title='INTRUDER ALERT!', message='Watchdog has detected a new intruder! Tap to view!')
@@ -105,25 +113,15 @@ class Watchdog(MDApp):
         '''
 
     def on_action(self):
-        ftp = FTP()
-        server = "ftp.epizy.com"
-        port = 21
-        ftp.connect(server, port)
-        ftp.login("epiz_33608356", "HwGN8xvq7ut")
         try:
-            ftp.rename("off.txt", "on.txt")
+            self.obj.change_status("off.txt", "on.txt")
         except:
             pass
         print("switched on")
 
     def off_action(self):
-        ftp = FTP()
-        server = "ftp.epizy.com"
-        port = 21
-        ftp.connect(server, port)
-        ftp.login("epiz_33608356", "HwGN8xvq7ut")
         try:
-            ftp.rename("on.txt", "off.txt")
+            self.obj.change_status("on.txt", "off.txt")
         except:
             pass
         print("switched off")
