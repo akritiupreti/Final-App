@@ -8,8 +8,8 @@ import os
 from ftplib import FTP
 import plyer
 from kivy.factory import Factory
-import time
-from functools import partial
+import shutil
+import pyttsx3
 
 
 Window.size = (310, 580)
@@ -86,18 +86,30 @@ class Client:
 
                     path = os.path.join(date, file)
                     r = ftp.retrbinary('RETR %s' % file, open(path, 'wb').write)
-                    #print(r)
+
+                    print(r)
                 else:
                     pass
                     #print("File already downloaded")
         #ftp.quit()
         print(path)
 
-        folders = os.listdir()
-        folderFiles = os.listdir(folders[-1])[-1]  # latest intruder
-
+        if new:
+            self.getLatestPhoto()
+            print("latest photo copied!")
 
         return new
+
+    def getLatestPhoto(self):
+        try:
+            latestFolder = os.listdir()[-1]
+            latestFile = os.listdir(latestFolder)[-1]  # latest intruder
+
+            if "intruder.jpg" in os.listdir():
+                os.remove("intruder.jpg")
+            shutil.copy(latestFolder + "/" + latestFile, "intruder.jpg")
+        except:
+            pass
 
 
 class Watchdog(MDApp):
@@ -117,8 +129,6 @@ class Watchdog(MDApp):
         username = "epiz_33608356"
         password = "HwGN8xvq7ut"
 
-        #username = self.root.get_screen('login').ids.user.text
-        #password = self.root.get_screen('login').ids.pw.text
         print(username)
         print(password)
 
@@ -143,17 +153,13 @@ class Watchdog(MDApp):
 
     def send_notification(self):
         plyer.notification.notify(title='INTRUDER ALERT!', message='Watchdog has detected a new intruder! Tap to view!')
-        if self.status:
+        speech = pyttsx3.init()
+        text = "Warning! Intruder alert! Warning! Intruder Alert!"
+        speech.say(text)
+        speech.runAndWait()
+
+        if self.status:  # if owner is home
             self.callPopupMain()
-
-
-        '''
-        folder_names = os.listdir()
-
-        for folder in folder_names:
-            panel = MDExpansionPanel(title=folder, icon="google.png", content=MyContent())
-            self.root.ids.panel_container.add_widget(panel)
-        '''
 
     def callPopupMain(self):
         Factory.PopupMain().open()
@@ -162,7 +168,12 @@ class Watchdog(MDApp):
         Factory.PopupRegister().open()
 
     def callPopupSuccessful(self):
+        print("I dont know Walt. You've been acting sauce lately. It seems like we have an impostor among us")
         Factory.PopupSuccessful().open()
+        speech = pyttsx3.init()
+        text = "I dont know Walt. You've been acting sauce lately. It seems like we have an impostor among us"
+        speech.say(text)
+        speech.runAndWait()
 
     def knownFlag(self, flag, name=None):
         print(name)

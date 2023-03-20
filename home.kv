@@ -1,17 +1,23 @@
 <PopupMain@Popup>
     auto_dismiss: False
     title: "INTRUDER ALERT!"
+    halign: 'center'
     MDScreen:
         name: "known"
         MDFloatLayout:
             md_bg_color: 1, 1, 1, 1
+            Image:
+                source: 'Intruders/intruder.jpg'
+                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .7}
+
             MDLabel:
                 font_size: 15
                 text: 'An intruder has been detected!'
-                font_name: "MPoppins"
+                font_name: "BPoppins"
                 halign: 'center'
                 size_hint_y: None
-                pos_hint: {"center_x": .5, "center_y": .8}
+                pos_hint: {"center_x": .5, "center_y": .95}
                 height: self.texture_size[1]
                 padding_y: 15
 
@@ -21,14 +27,14 @@
                 font_name: "MPoppins"
                 halign: 'center'
                 size_hint_y: None
-                pos_hint: {"center_x": .5, "center_y": .6}
+                pos_hint: {"center_x": .5, "center_y": .4}
                 height: self.texture_size[1]
                 padding_y: 15
 
             Button:
                 text: "Yes"
                 size_hint: .66, .065
-                pos_hint: {"center_x": .5, "center_y": .5}
+                pos_hint: {"center_x": .5, "center_y": .3}
                 background_color: 0, 0, 0, 0
                 font_name: "BPoppins"
                 canvas.before:
@@ -45,7 +51,7 @@
             Button:
                 text: "No"
                 size_hint: .66, .065
-                pos_hint: {"center_x": .5, "center_y": .4}
+                pos_hint: {"center_x": .5, "center_y": .2}
                 background_color: 0, 0, 0, 0
                 font_name: "BPoppins"
                 canvas.before:
@@ -66,13 +72,18 @@
         name: "register"
         MDFloatLayout:
             md_bg_color: 1, 1, 1, 1
+            Image:
+                source: 'Intruders/intruder.jpg'
+                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .7}
+
             MDLabel:
                 font_size: 15
                 text: 'An intruder has been detected!'
-                font_name: "MPoppins"
+                font_name: "BPoppins"
                 halign: 'center'
                 size_hint_y: None
-                pos_hint: {"center_x": .5, "center_y": .8}
+                pos_hint: {"center_x": .5, "center_y": .95}
                 height: self.texture_size[1]
                 padding_y: 15
 
@@ -82,14 +93,14 @@
                 font_name: "MPoppins"
                 halign: 'center'
                 size_hint_y: None
-                pos_hint: {"center_x": .5, "center_y": .6}
+                pos_hint: {"center_x": .5, "center_y": .4}
                 height: self.texture_size[1]
                 padding_y: 15
 
             Button:
                 text: "Yes"
                 size_hint: .66, .065
-                pos_hint: {"center_x": .5, "center_y": .5}
+                pos_hint: {"center_x": .5, "center_y": .3}
                 background_color: 0, 0, 0, 0
                 font_name: "BPoppins"
                 canvas.before:
@@ -110,7 +121,7 @@
                 font_name: "MPoppins"
                 halign: 'center'
                 size_hint_y: None
-                pos_hint: {"center_x": .5, "center_y": .43}
+                pos_hint: {"center_x": .5, "center_y": .23}
                 height: self.texture_size[1]
                 padding_y: 15
 
@@ -120,18 +131,18 @@
                 font_name: "MPoppins"
                 size_hint_y: None
                 halign: 'center'
-                pos_hint: {"center_x": .5, "center_y": .31}
+                pos_hint: {"center_x": .5, "center_y": .12}
                 background_color: 1, 1, 1, 0
                 foreground_color: rgba(0, 0, 59, 255)
                 cursor_color: rgba(0, 0, 59, 255)
-                font_size: "14sp"
+                font_size: 12
                 cursor_width: "2sp"
                 multiline: False
 
             Button:
                 text: "No"
                 size_hint: .66, .065
-                pos_hint: {"center_x": .5, "center_y": .25}
+                pos_hint: {"center_x": .5, "center_y": .11}
                 background_color: 0, 0, 0, 0
                 font_name: "BPoppins"
                 canvas.before:
