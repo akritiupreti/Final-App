@@ -30,6 +30,9 @@ class Client:
         print("Connected!")
 
     def change_status(self, fromStatus, toStatus):
+        '''
+        changes status of owner's presence in home from on to off or vice versa
+        '''
         self.ftpMain.rename(fromStatus, toStatus)
 
     def change_known_flag(self, toFlag, name=None):
@@ -38,6 +41,7 @@ class Client:
         10 -> intruder is friendly but do not register face. Open gate.
         11 -> intruder is friendly and register face. Open gate.
         '''
+        self.ftpMain.cwd("/../htdocs")
         files = self.ftpMain.nlst()
         if toFlag == "11":
             name = "name_"+name+".txt"
@@ -61,8 +65,11 @@ class Client:
             print("Could not be renamed")
 
     def run(self):
+        '''
+        checks for new intruders and downloads their photos if any
+        '''
+        self.ftpMain.cwd('/htdocs/photos')
         ftp = self.ftpMain
-        # ftp.login("epiz_33608356", "HwGN8xvq7ut")
         files = ftp.nlst()  # list of files on the server
         # print(files)
 
@@ -101,15 +108,15 @@ class Client:
         return new
 
     def getLatestPhoto(self):
-        try:
-            latestFolder = os.listdir()[-1]
-            latestFile = os.listdir(latestFolder)[-1]  # latest intruder
+        '''
+        copies latest photo of intruder in 'Intruders' directory
+        '''
+        if "intruder.jpg" in os.listdir():
+            os.remove("intruder.jpg")
 
-            if "intruder.jpg" in os.listdir():
-                os.remove("intruder.jpg")
-            shutil.copy(latestFolder + "/" + latestFile, "intruder.jpg")
-        except:
-            pass
+        latestFolder = os.listdir()[-1]
+        latestFile = os.listdir(latestFolder)[-1]  # latest intruder
+        shutil.copy(latestFolder + "/" + latestFile, "intruder.jpg")
 
 
 class Watchdog(MDApp):
@@ -126,8 +133,8 @@ class Watchdog(MDApp):
     def logger(self):
         self.status = 1
 
-        username = "epiz_33608356"
-        password = "HwGN8xvq7ut"
+        username = "epiz_33843178"
+        password = "QOMgsUul412mh"
 
         print(username)
         print(password)
@@ -142,9 +149,6 @@ class Watchdog(MDApp):
         Clock.schedule_interval(self.keep_checking_for_intruders, 5)
 
     def keep_checking_for_intruders(self, *args):
-        username = "epiz_33608356"
-        password = "HwGN8xvq7ut"
-        #obj = Client(username, password)
         new = self.obj.run()
         if new:
             self.send_notification()
