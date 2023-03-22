@@ -33,6 +33,7 @@ class Client:
         '''
         changes status of owner's presence in home from on to off or vice versa
         '''
+        self.ftpMain.cwd("/../htdocs")
         self.ftpMain.rename(fromStatus, toStatus)
 
     def change_known_flag(self, toFlag, name=None):
@@ -54,9 +55,10 @@ class Client:
 
         toFlag = toFlag + ".txt"
         flags = ["00.txt", "10.txt", "11.txt"]
-        for file in files:
-            if file in flags:
+        for file in flags:
+            if file in files:
                 self.ftpMain.rename(file, toFlag)
+                print("File has been renamed from", file, "to", toFlag)
                 break
 
         try:
@@ -198,9 +200,6 @@ class Watchdog(MDApp):
         except:
             pass
         print("switched off")
-
-    def buttonclick(self):
-        print("Button clicked")
 
 
 if __name__ == "__main__":
