@@ -191,6 +191,55 @@
                     root.dismiss()
 
 
+<PopupNotHome@Popup>
+    auto_dismiss: False
+    title: "INTRUDER ALERT!"
+    halign: 'center'
+    MDScreen:
+        name: "known"
+        MDFloatLayout:
+            md_bg_color: 1, 1, 1, 1
+            Image:
+                source: 'Intruders/intruder.jpg'
+                halign: 'center'
+                pos_hint: {"center_x": .5, "center_y": .7}
+
+            MDLabel:
+                font_size: 15
+                text: 'An intruder has been detected!'
+                font_name: "BPoppins"
+                halign: 'center'
+                size_hint_y: None
+                pos_hint: {"center_x": .5, "center_y": .95}
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDLabel:
+                font_size: 15
+                text: 'This person was detected by Watchdog'
+                font_name: "MPoppins"
+                halign: 'center'
+                size_hint_y: None
+                pos_hint: {"center_x": .5, "center_y": .4}
+                height: self.texture_size[1]
+                padding_y: 15
+
+            Button:
+                text: "Exit"
+                size_hint: .66, .065
+                pos_hint: {"center_x": .5, "center_y": .15}
+                background_color: 0, 0, 0, 0
+                font_name: "BPoppins"
+                canvas.before:
+                    Color:
+                        rgb: rgba(52, 0, 231, 255)
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [3]
+                on_release:
+                    root.dismiss()
+
 
 MDScreen:
     name: "default"

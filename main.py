@@ -166,6 +166,8 @@ class Watchdog(MDApp):
 
         if self.status:  # if owner is home
             self.callPopupMain()
+        else:
+            self.callPopupNotHome()
 
     def callPopupMain(self):
         Factory.PopupMain().open()
@@ -180,6 +182,9 @@ class Watchdog(MDApp):
         text = "I dont know Walt. You've been acting sauce lately. It seems like we have an impostor among us"
         speech.say(text)
         speech.runAndWait()
+
+    def callPopupNotHome(self):
+        Factory.PopupNotHome().open()
 
     def knownFlag(self, flag, name=None):
         print(name)
