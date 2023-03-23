@@ -14,19 +14,20 @@ MDScreen:
             size_hint_x: .85
             pos_hint: {"center_x": .5, "center_y": .53}
             halign: "center"
-            color: rgba(34, 34, 34, 255)
-        Button:
+            color: rgba(0, 0, 120, 255)
+        MDRectangleFlatButton:
             text: "PROCEED"
             size_hint: .66, .065
             pos_hint: {"center_x": .5, "center_y": .18}
-            background_color: 0, 0, 0, 0
+            text_color: 1, 1, 1, 1
+            md_bg_color: 0, 0, 34, 255
             font_name: "BPoppins"
             on_release:
                 root.manager.transition.direction = "left"
                 root.manager.current = "login"
             canvas.before:
                 Color:
-                    rgb: rgba(52, 0, 231, 255)
+                    rgb: rgba(0, 0, 34, 255)
                 RoundedRectangle:
                     size: self.size
                     pos: self.pos

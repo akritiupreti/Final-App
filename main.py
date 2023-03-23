@@ -160,7 +160,7 @@ class Watchdog(MDApp):
     def send_notification(self):
         plyer.notification.notify(title='INTRUDER ALERT!', message='Watchdog has detected a new intruder! Tap to view!')
         speech = pyttsx3.init()
-        text = "Warning! Intruder alert! Warning! Intruder Alert!"
+        text = "Warning! Intruder alert!"
         speech.say(text)
         speech.runAndWait()
 
@@ -176,12 +176,7 @@ class Watchdog(MDApp):
         Factory.PopupRegister().open()
 
     def callPopupSuccessful(self):
-        print("I dont know Walt. You've been acting sauce lately. It seems like we have an impostor among us")
         Factory.PopupSuccessful().open()
-        speech = pyttsx3.init()
-        text = "I dont know Walt. You've been acting sauce lately. It seems like we have an impostor among us"
-        speech.say(text)
-        speech.runAndWait()
 
     def callPopupNotHome(self):
         Factory.PopupNotHome().open()
