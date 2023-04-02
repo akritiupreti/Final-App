@@ -303,14 +303,92 @@ MDScreen:
             name: "about"
             text: "About us"
             icon: "chat"
-            MDLabel:
-                text: "About us"
-                halign: "center"
+            MDFloatLayout:
+                md_bg_color: 1, 1, 1, 1
+
+                MDLabel:
+                    font_name: "BPoppins"
+                    font_size: 17
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.85}
+                    text: "Integrating Facial Recognition with Motion Capture using OpenCV and Raspberry Pi for Advanced Intruder Detection in Security Systems"
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "BPoppins"
+                    font_size: 16
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.6}
+                    text: "Creators"
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.53}
+                    text: "Akriti Upreti\nBiraj Chhetri"
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.35}
+                    text: "We pursue BTech Computer Science and Engineering in VIT Vellore.\n"
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.23}
+                    text: "The purpose of this project is to provide a smart home security system with convenient access to owners through the help of our mobile app."
+                    text_color: 0, 0, 0, 0
 
         MDBottomNavigationItem:
             name: "instructions"
             text: "Instructions"
             icon: "coffee"
-            MDLabel:
-                text: "Instructions"
-                halign: "center"
+            MDFloatLayout:
+                md_bg_color: 1, 1, 1, 1
+
+                MDLabel:
+                    font_name: "BPoppins"
+                    font_size: 30
+                    halign: "center"
+                    pos_hint: {"center_x": 0.5, "center_y": 0.85}
+                    text: "Instructions"
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "left"
+                    pos_hint: {"center_x": 0.55, "center_y": 0.7}
+                    text: "If you are in your home, please turn the 'Are you home?' switch ON.\nElse, turn it OFF."
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "left"
+                    pos_hint: {"center_x": 0.55, "center_y": 0.56}
+                    text: "Keep your mobile data or Wifi on.\nDo NOT close this app so that it can run in the background."
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "left"
+                    pos_hint: {"center_x": 0.55, "center_y": 0.4}
+                    text: "If you are in your home when an intruder is detected, you will be able to decide if the intruder is friendly or not through your phone."
+                    text_color: 0, 0, 0, 0
+
+                MDLabel:
+                    font_name: "MPoppins"
+                    font_size: 15
+                    halign: "left"
+                    pos_hint: {"center_x": 0.55, "center_y": 0.22}
+                    text: "However, if you are not home, you will only be notified of the intruder, and an alarm is sounded in your home if the intruder does not leave."
+                    text_color: 0, 0, 0, 0
